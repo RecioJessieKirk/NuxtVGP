@@ -2,7 +2,15 @@
 	<v-app class="space-bg-global-2">
 		<v-main>
 			<v-container>
-				<v-data-table :headers="headers" :items="launches">
+				<v-select v-model="selectedYear" :items="availableYears" clearable />
+				<div class="d-flex justify-end">
+					<v-btn-toggle v-model="sortOrder" mandatory>
+						<v-btn value="asc" variant="outlined">ASC</v-btn>
+						<v-btn value="dsc" variant="outlined">DSC</v-btn>
+					</v-btn-toggle>
+				</div>
+
+				<v-data-table :headers="headers" :items="sortedLaunch">
 					<template #[`item.launch_success`]="{ item }">
 						<v-chip :color="item.launch_success ? 'green' : 'red'" size="small">
 							{{ item.launch_success ? 'Success' : 'Failed' }}
@@ -14,12 +22,19 @@
 						</tr>
 					</template>
 				</v-data-table>
+				<!-- <div class="d-flex justify-end">
+					<v-btn-toggle v-model="sortOrder" mandatory>
+						<v-btn value="asc">ASC</v-btn>
+						<v-btn value="desc">DSC</v-btn>
+					</v-btn-toggle>
+				</div> -->
 			</v-container>
 		</v-main>
 	</v-app>
 </template>
 <script lang="ts" setup>
-const { launches } = await useLaunches()
+const { selectedYear, availableYears, sortedLaunch, sortOrder } = await useLaunches()
+// const { selectedYear, availableYears, filteredLaunches, sortedLaunches, sortOrder } = await useLaunches()
 
 const headers = [
 	{ title: 'Rocket Name', key: 'rocket.rocket_name' },
