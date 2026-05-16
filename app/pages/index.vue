@@ -13,7 +13,15 @@
 						Your gateway to SpaceX launch data and mission details
 					</p>
 					<div class="d-flex justify-center ma-3">
-						<button class="btn-start">Start Exploring</button>
+						<v-btn
+							class="text-white"
+							variant="tonal"
+							style="padding: 10px 20px; background-color: #2b1e1a"
+							rounded="lg"
+							to="launches-space-x/"
+						>
+							Start Exploring
+						</v-btn>
 					</div>
 				</div>
 			</div>

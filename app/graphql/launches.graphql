@@ -1,0 +1,19 @@
+{
+	launches {
+		id
+		mission_name
+		launch_date_local
+		launch_date_utc
+		launch_site {
+			site_name
+		}
+		rocket {
+			rocket_name
+		}
+		details
+		links {
+			flickr_images
+		}
+		launch_success
+	}
+}
