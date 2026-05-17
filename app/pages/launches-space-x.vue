@@ -2,9 +2,15 @@
 	<v-container>
 		<v-select v-model="selectedYear" :items="availableYears" clearable />
 		<div class="d-flex justify-end">
-			<v-btn-toggle v-model="sortOrder" mandatory>
-				<v-btn value="asc" variant="outlined">ASC</v-btn>
-				<v-btn value="dsc" variant="outlined">DSC</v-btn>
+			<v-btn-toggle v-model="sortOrder" mandatory @update:model-value="console.log(sortOrder)">
+				<v-btn value="asc" variant="outlined" stacked>
+					<img src="../imgs/launches.svg" class="asc-icon" />
+					Ascending
+				</v-btn>
+				<v-btn value="dsc" variant="outlined" stacked>
+					<img src="../imgs/launches.svg" class="asc-icon dsc-icon" />
+					Descending
+				</v-btn>
 			</v-btn-toggle>
 		</div>
 
@@ -77,5 +83,14 @@ const headers = [
 .v-data-table__wrapper,
 .v-table__wrapper {
 	background: transparent !important;
+}
+
+.asc-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.dsc-icon {
+	transform: rotate(180deg);
 }
 </style>

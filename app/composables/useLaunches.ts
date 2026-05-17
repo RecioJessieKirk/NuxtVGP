@@ -23,7 +23,14 @@ const query = gql`
 `
 export const useLaunches = () => {
 	const { data } = useAsyncQuery<{ launches: Launches[] }>(query)
-	const launches = computed(() => data.value?.launches ?? [])
+	const launches = computed(() => {
+		const seen = new Set()
+		return (data.value?.launches ?? []).filter((l) => {
+			if (seen.has(l.id)) return false
+			seen.add(l.id)
+			return true
+		})
+	})
 
 	const selectedYear = ref('') // <- Filter state
 
@@ -39,7 +46,7 @@ export const useLaunches = () => {
 		[...new Set(launches.value.map((l) => new Date(l.launch_date_utc).getFullYear().toString()))].sort(),
 	)
 
-	const sortOrder = ref<'asc' | 'desc'>('asc')
+	const sortOrder = ref<'asc' | 'dsc'>('asc')
 	const sortedLaunch = computed(() => {
 		const data = [...filteredLaunches.value]
 		data.sort((a, b) => {
@@ -52,18 +59,5 @@ export const useLaunches = () => {
 		return data
 	})
 
-	// const sortOrder = ref<'asc' | 'desc'>('asc')
-
-	// const sortedLaunches = computed(() =>
-	// 	[...filteredLaunches.value].sort((a, b) => {
-	// 		const dateA = new Date(a.launch_date_utc).getTime()
-	// 		const dateB = new Date(b.launch_date_local).getTime()
-	// 		return sortOrder.value === 'asc' ? dateA - dateB : dateB - dateA
-	// 	}),
-	// )
-
-	return { filteredLaunches, selectedYear, availableYears, sortedLaunch, sortOrder }
-	// return { filteredLaunches, selectedYear, availableYears, sortedLaunches, sortOrder }
-
-	// return { launches }
+	return { selectedYear, availableYears, sortedLaunch, sortOrder }
 }
