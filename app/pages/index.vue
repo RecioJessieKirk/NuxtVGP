@@ -2,7 +2,7 @@
 	<v-app class="space-bg-global">
 		<div class="d-flex align-center h-screen">
 			<div class="d-flex justify-center">
-				<img src="../imgs/astronaut.svg" />
+				<img src="../imgs/astronaut.svg" alt="astronaut" class="floating" />
 			</div>
 			<div class="d-flex flex-column text-right justify-center" justify-content="center">
 				<p class="font-weight-semibold text-display-small custom-title-large">SpaceX Project API</p>
@@ -30,6 +30,22 @@ definePageMeta({ layout: false })
 .space-bg-global {
 	background-image: linear-gradient(180deg, #000000 0%, #ffebcd 98.22%, #ffffff 130.96%);
 }
+
+.floating {
+	animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
 .custom-title-large {
 	font-size: 3.125rem;
 }

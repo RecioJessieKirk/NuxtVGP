@@ -1,9 +1,9 @@
 <template>
-	<v-app-bar flat color="transparent" border="b" class="spacex-navbar">
+	<v-app-bar flat color="transparent" border="b" height="100" class="spacex-navbar">
 		<v-btn class="d-flex flex-row align-center me-6 text-none" to="/" :ripple="false">
 			<div class="d-flex flex-row align-center">
-				<img src="../imgs/spaceXlogo.svg" class="spacex-logo" />
-				<span class="spacex-title font-weight-medium">SpaceX</span>
+				<img src="../imgs/spaceXlogo.svg" style="width: 85px; height: 84px; margin-bottom: 10px" />
+				<span class="font-weight-medium" style="font-size: 20px; margin-left: -40px">SpaceX</span>
 			</div>
 		</v-btn>
 
@@ -14,42 +14,27 @@
 		<v-spacer />
 		<v-btn
 			variant="outlined"
-			class="spacex-devlogs text-none d-flex align-center justify-center"
+			style="margin-right: 50px"
+			class="text-none d-flex align-center justify-center"
+			height="65"
+			width="145"
 			href="https://www.notion.so/Apollo-Systems-Frontend-Exam-363c4d559eb380d591d4d7e75fea56ba?source=copy_link"
 			target="_blank"
 			@click.stop
 		>
-			<img src="../imgs/devlogs.svg" alt="icon" class="img-devlogs d-print-block me-2" />
+			<img
+				src="../imgs/devlogs.svg"
+				alt="icon"
+				class="me-2"
+				style="height: 25px; width: 25px; display: block"
+			/>
 			<span>Devlogs</span>
 		</v-btn>
 	</v-app-bar>
 </template>
 <style scoped>
-.spacex-logo {
-	width: 5.3rem;
-	height: 5.25rem;
-	margin-bottom: 0.625rem;
-}
-
-.spacex-title {
-	font-size: 1.25rem;
-	margin-left: -2.5rem;
-}
-
 .spacex-navbar {
 	backdrop-filter: blur(8px);
 	background: rgba(255, 245, 230, 0.85) !important;
-	height: 6.25rem;
-}
-
-.spacex-devlogs {
-	margin-right: 3.125rem;
-	height: 4rem;
-	width: 9rem;
-}
-
-.img-devlogs {
-	height: 1.5rem;
-	width: 1.5rem;
 }
 </style>
