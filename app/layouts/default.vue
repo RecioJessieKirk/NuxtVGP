@@ -1,13 +1,14 @@
 <template>
 	<v-app class="space-bg-global-2">
-		<v-main>
-			<Navbar />
-
+		<Navbar />
+		<v-main style="min-height: 100vh">
 			<slot />
 		</v-main>
+		<Footer />
 	</v-app>
 </template>
 <script setup>
+import Footer from '~/components/Footer.vue'
 import Navbar from '~/components/Navbar.vue'
 </script>
 

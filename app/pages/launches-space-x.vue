@@ -8,7 +8,12 @@
 			</v-btn-toggle>
 		</div>
 
-		<v-data-table :headers="headers" :items="sortedLaunch">
+		<v-data-table
+			:headers="headers"
+			:items="sortedLaunch"
+			:hide-default-footer="true"
+			items-per-page="-1"
+		>
 			<template #[`item.launch_success`]="{ item }">
 				<v-chip :color="item.launch_success ? 'green' : 'red'" size="small">
 					{{ item.launch_success ? 'Success' : 'Failed' }}
@@ -39,11 +44,25 @@ const { selectedYear, availableYears, sortedLaunch, sortOrder } = await useLaunc
 const store = useFavorites()
 
 const headers = [
-	{ title: 'Rocket Name', key: 'rocket.rocket_name' },
-	{ title: 'Mission Name', key: 'mission_name' },
-	{ title: 'Launch Date', key: 'launch_date_local' },
-	{ title: 'Launch Site', key: 'launch_site.site_name' },
-	{ title: 'Status', key: 'launch_success' },
-	{ title: 'Favorite', key: 'actions' },
+	{ title: 'Rocket Name', key: 'rocket.rocket_name', sortable: false },
+	{ title: 'Mission Name', key: 'mission_name', sortable: false },
+	{ title: 'Launch Date', key: 'launch_date_local', sortable: false },
+	{ title: 'Launch Site', key: 'launch_site.site_name', sortable: false },
+	{ title: 'Status', key: 'launch_success', sortable: false },
+	{ title: 'Favorite', key: 'actions', sortable: false },
 ]
 </script>
+<style>
+.v-data-table,
+.v-data-table__wrapper,
+.v-table__wrapper {
+	background: transparent !important;
+}
+.v-data-table td,
+.v-data-table th {
+	border: none !important;
+}
+.v-data-table th {
+	font-weight: 700 !important;
+}
+</style>
