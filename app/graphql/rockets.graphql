@@ -1,0 +1,20 @@
+{
+	rockets {
+		name
+		description
+		first_flight
+		height {
+			feet
+			meters
+		}
+		diameter {
+			feet
+			meters
+		}
+		mass {
+			kg
+			lb
+		}
+		stages
+	}
+}
