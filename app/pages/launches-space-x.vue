@@ -13,6 +13,8 @@
 			:items="sortedLaunch"
 			:hide-default-footer="true"
 			items-per-page="-1"
+			hover
+			@click:row="(_: { _: Launches }, { item }: { item: Launches }) => openDialog(item)"
 		>
 			<template #[`item.launch_success`]="{ item }">
 				<v-chip :color="item.launch_success ? 'green' : 'red'" size="small">
@@ -28,7 +30,7 @@
 				<v-btn
 					:color="store.favorites.some((l) => l.id === item.id) ? 'yellow' : 'grey'"
 					variant="text"
-					@click="store.addFavorites(item)"
+					@click.stop="store.addFavorites(item)"
 				>
 					<template #prepend>
 						<img src="../imgs/favorite.svg" alt="icon" class="btn-icon" />
@@ -36,10 +38,25 @@
 				</v-btn>
 			</template>
 		</v-data-table>
+
+		<v-dialog v-model="dialog" max-width="500">
+			<v-card class="pa-4">
+				<v-card-title>{{ selectedLaunch?.mission_name }}</v-card-title>
+				<v-card-text>
+					<p>{{ selectedLaunch?.details ?? '--' }}</p>
+				</v-card-text>
+				<v-card-actions>
+					<v-btn @click="dialog = false">Close</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</v-container>
 </template>
 <script lang="ts" setup>
+import type { Launches } from '~/types/launches'
+
 const { selectedYear, availableYears, sortedLaunch, sortOrder } = await useLaunches()
+const { dialog, selectedLaunch, openDialog } = await useDialog()
 
 const store = useFavorites()
 
@@ -53,16 +70,12 @@ const headers = [
 ]
 </script>
 <style>
+.v-data-table th {
+	font-weight: 700 !important;
+}
 .v-data-table,
 .v-data-table__wrapper,
 .v-table__wrapper {
 	background: transparent !important;
-}
-.v-data-table td,
-.v-data-table th {
-	border: none !important;
-}
-.v-data-table th {
-	font-weight: 700 !important;
 }
 </style>
