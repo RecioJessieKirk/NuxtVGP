@@ -31,17 +31,10 @@
 				</v-btn>
 			</template>
 		</v-data-table>
-		<!-- <div class="d-flex justify-end">
-					<v-btn-toggle v-model="sortOrder" mandatory>
-						<v-btn value="asc">ASC</v-btn>
-						<v-btn value="desc">DSC</v-btn>
-					</v-btn-toggle>
-				</div> -->
 	</v-container>
 </template>
 <script lang="ts" setup>
 const { selectedYear, availableYears, sortedLaunch, sortOrder } = await useLaunches()
-// const { selectedYear, availableYears, filteredLaunches, sortedLaunches, sortOrder } = await useLaunches()
 
 const store = useFavorites()
 
